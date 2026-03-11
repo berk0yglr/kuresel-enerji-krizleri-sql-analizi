@@ -1,5 +1,5 @@
 use petrolarchive
---1.Krizin Pompaya Yansýmasý ve Ýthalat Baðýmlýsý Ülkelerin Durumu---
+--1.Krizin Pompaya YansÃ½masÃ½ ve Ãthalat BaÃ°Ã½mlÃ½sÃ½ Ãœlkelerin Durumu---
 select * from dbo.benzin_fiyat_karsilatirmasi
 select * from dbo.ulke_etkisi
 select
@@ -10,9 +10,9 @@ select
    ,b.Mar7_USD
    ,b.Pct_Increase
 ,case 
-	  when Oil_Import_Dep='Low' then 'Baðýmsýz'
-	  when Oil_Import_Dep='Medium'  then 'Yarý Baðýmlý'
-	  when Oil_Import_Dep='High' then 'Tam Baðýmlý'
+	  when Oil_Import_Dep='Low' then 'BaÃ°Ã½msÃ½z'
+	  when Oil_Import_Dep='Medium'  then 'YarÃ½ BaÃ°Ã½mlÃ½'
+	  when Oil_Import_Dep='High' then 'Tam BaÃ°Ã½mlÃ½'
  END AS Bagimlilik_Durumu
 from dbo.benzin_fiyat_karsilatirmasi b
 left join dbo.ulke_etkisi u
@@ -20,7 +20,7 @@ left join dbo.ulke_etkisi u
 where Oil_Import_Dep='High'
 order by Pct_Increase desc 
 
---2.Savaþýn Petrol Fiyatlarýna Günlük Etkisi--
+--2.SavaÃ¾Ã½n Petrol FiyatlarÃ½na GÃ¼nlÃ¼k Etkisi--
 select * from dbo.savas_zaman_cizelgesi
 select * from dbo.gunluk_ham_petrol
 select 
@@ -34,13 +34,13 @@ inner join dbo.gunluk_ham_petrol g  on s.Date=g.Date
 where Brent_Change_Pct >100
 order by Brent_Change_Pct desc
 
---3.Bölgesel Hasar Raporu--
+--3.BÃ¶lgesel Hasar Raporu--
 
 select * from dbo.ulke_etkisi 
  
 select
  Region
-,COUNT(Country) as Toplam_ülke_sayisi
+,COUNT(Country) as Toplam_Ã¼lke_sayisi
 ,ROUND(AVG(GDP_Impact_PCT),2) as gdp_ortalamasi
 ,ROUND(AVG(Stock_Market_Change),2) as ortalama_borsa
 from dbo.ulke_etkisi
@@ -48,7 +48,7 @@ group by Region
 order by gdp_ortalamasi desc
 
 
---4.Küresel Ortalamanýn Üzerinde Zam Yiyen Ülkeler--
+--4.KÃ¼resel OrtalamanÃ½n Ãœzerinde Zam Yiyen Ãœlkeler--
 
 select *from  benzin_fiyat_karsilatirmasi
 
