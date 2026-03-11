@@ -1,3 +1,5 @@
 *.sql linguist-language=SQL
 *.csv linguist-generated=true
 *.md linguist-documentation=true
+*.sql linguist-detectable=true
+Data/** linguist-generated=true
